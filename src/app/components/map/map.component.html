@@ -1,0 +1,21 @@
+<div class="card bg-dark text-white">
+  <div class="card-body">
+    <div>
+      <agm-map [latitude]="lat" [longitude]="lng" [(zoom)]="zoom" (zoomChange)="update()" mapTypeId="roadmap"
+        [disableDefaultUI]="false" [zoomControl]="false" (mapClick)="mapClicked($event)">
+        <agm-info-window>
+          <strong>InfoWindow content</strong>
+        </agm-info-window>
+
+
+        <agm-circle *ngFor="let dataPoint of data" [latitude]="dataPoint.lat" [longitude]="dataPoint.lng"
+          [radius]="dataPoint.radius" [fillColor]="'red'" [circleDraggable]="false" [fillOpacity]=".7"
+          (circleClick)="circleClicked(dataPoint)" [editable]="false">
+          <agm-info-window>
+            <strong>InfoWindow content</strong>
+          </agm-info-window>
+        </agm-circle>
+      </agm-map>
+    </div>
+  </div>
+</div>

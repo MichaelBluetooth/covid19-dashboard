@@ -1,0 +1,20 @@
+<div class="card bg-dark text-white">
+  <div class="card-body">
+    <tabset [justified]="true">
+      <tab heading="Confirmed Cases">
+        <div style="display: block;" *ngIf="confirmedData" class="chart-container">
+          <canvas baseChart [datasets]="confirmedData.lineChartData" [labels]="confirmedData.lineChartLabels"
+            [options]="confirmedData.lineChartOptions" [colors]="confirmedData.lineChartColors" [legend]="confirmedData.lineChartLegend"
+            [chartType]="confirmedData.lineChartType" [plugins]="confirmedData.lineChartPlugins"></canvas>
+        </div>
+      </tab>
+      <tab heading="Deaths vs. Recovered">
+        <div style="display: block;" *ngIf="deathVsRecoveryData" class="chart-container">
+          <canvas baseChart [datasets]="deathVsRecoveryData.lineChartData" [labels]="deathVsRecoveryData.lineChartLabels"
+            [options]="deathVsRecoveryData.lineChartOptions" [colors]="deathVsRecoveryData.lineChartColors" [legend]="deathVsRecoveryData.lineChartLegend"
+            [chartType]="deathVsRecoveryData.lineChartType" [plugins]="deathVsRecoveryData.lineChartPlugins"></canvas>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+</div>

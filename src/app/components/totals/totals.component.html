@@ -1,0 +1,15 @@
+<div class="card bg-dark text-white">
+  <div class="card-body ">
+    <div class="card-title text-center">
+      <h5>{{title}}</h5>
+      <h1 [class]="'text-' + badgeStyle">{{total}}</h1>
+    </div>
+    <div class="not-too-tall">
+
+      <div *ngFor="let country of totals" class="d-flex justify-content-between align-items-center underline">
+        {{country.Country}}
+        <span [class]="'badge badge-' + badgeStyle + ' badge-pill'">{{country[field]}}</span>
+      </div>
+    </div>
+  </div>
+</div>

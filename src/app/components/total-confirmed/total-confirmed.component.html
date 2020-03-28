@@ -1,0 +1,30 @@
+<div class="card bg-dark text-white">
+  <div class="card-body ">
+    <div class="card-title text-center">
+      <h5>{{title}}</h5>
+      <h1 [class]="'text-' + badgeStyle">{{selectedTab === 'state' ? statesTotal : worldTotal}}</h1>
+    </div>
+    <div>
+      <div>
+        <tabset [justified]="true">
+          <tab heading="US States" (selectTab)="updateSelectedTab('state')">
+            <div class="not-too-tall">
+              <div *ngFor="let country of stateTotals" class="d-flex justify-content-between align-items-center underline">
+                {{country.Province}}
+                <span [class]="'badge badge-' + badgeStyle + ' badge-pill'">{{country.Cases}}</span>
+              </div>
+            </div>
+          </tab>
+          <tab heading="World" (selectTab)="updateSelectedTab('world')">
+            <div class="not-too-tall">
+                <div *ngFor="let country of worldTotals" class="d-flex justify-content-between align-items-center underline">
+                  {{country.Country}}
+                  <span [class]="'badge badge-' + badgeStyle + ' badge-pill'">{{country.TotalConfirmed}}</span>
+                </div>
+              </div>
+          </tab>          
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>
