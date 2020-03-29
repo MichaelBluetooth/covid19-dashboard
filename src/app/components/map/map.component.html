@@ -1,7 +1,7 @@
 <div class="card bg-dark text-white">
   <div class="card-body">
     <div>
-      <agm-map [latitude]="lat" [longitude]="lng" [(zoom)]="zoom" (zoomChange)="update()" mapTypeId="roadmap"
+      <agm-map [latitude]="(currentLocation$ | async).lat" [longitude]="(currentLocation$ | async).lng" [(zoom)]="zoom" (zoomChange)="update()" mapTypeId="roadmap"
         [disableDefaultUI]="false" [zoomControl]="false" (mapClick)="mapClicked($event)">
         <agm-info-window>
           <strong>InfoWindow content</strong>

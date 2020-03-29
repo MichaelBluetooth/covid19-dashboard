@@ -3,6 +3,9 @@ import { MOCK_DATA } from 'src/app/models/test-data.model';
 import { DeduplicateFilterService } from 'src/app/services/deduplicate-filter.service';
 import { ALL_US_STATES } from 'src/app/data/states';
 import { Covid19ApiService } from 'src/app/services/covid-19-api.service';
+import { AppStateService } from 'src/app/services/app-state.service';
+import { Observable } from 'rxjs';
+import { MapCoordinates } from 'src/app/models/map-coordinates.model';
 
 // just an interface for type safety.
 interface Marker {
@@ -22,16 +25,17 @@ interface Marker {
 export class MapComponent {
 
   data: any[] = [];
+  zoom: number = 7;
+  currentLocation$ = this.appState.currentLocation$;
 
-  zoom: number = 8;
-
-  // initial center position for the map (Ithaca NY)
-  lat: number = 42.443962;
-  lng: number = -76.501884;
-
-  constructor(private covid19ApiService: Covid19ApiService, private deduplicateService: DeduplicateFilterService) { }
+  constructor(private covid19ApiService: Covid19ApiService, private deduplicateService: DeduplicateFilterService, private appState: AppStateService) { }
 
   ngOnInit() {
+    // this.appState.currentLocation$.subscribe(coo => {
+    //   this.lng = coo.lng;
+    //   this.lat = coo.lat;
+    // });
+
     this.covid19ApiService.totalsByCountry('US', 'confirmed').subscribe(raw => {
       this.data = this.deduplicateService.dedupe(raw).filter(dp => this.include(dp.Province)).map(dp => {
         let radius = Math.log(dp.Cases) * 100 * (1 / this.zoom * 120);

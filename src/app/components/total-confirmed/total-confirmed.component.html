@@ -9,7 +9,7 @@
         <tabset [justified]="true">
           <tab heading="US States" (selectTab)="updateSelectedTab('state')">
             <div class="not-too-tall">
-              <div *ngFor="let country of stateTotals" class="d-flex justify-content-between align-items-center underline">
+              <div *ngFor="let country of stateTotals" class="pointer d-flex justify-content-between align-items-center underline" (click)="zoomToState(country.Province)">
                 {{country.Province}}
                 <span [class]="'badge badge-' + badgeStyle + ' badge-pill'">{{country.Cases}}</span>
               </div>

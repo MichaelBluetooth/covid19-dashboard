@@ -3,6 +3,7 @@ import { SummaryModel } from 'src/app/models/summary.model';
 import { TotalsByStateService } from 'src/app/services/totals-by-state.service';
 import { TotalCount } from 'src/app/models/total-count.model';
 import { Covid19ApiService } from 'src/app/services/covid-19-api.service';
+import { AppStateService } from 'src/app/services/app-state.service';
 
 @Component({
   selector: 'app-total-confirmed',
@@ -21,7 +22,9 @@ export class TotalConfirmedComponent implements OnInit {
   stateTotals: TotalCount[] = [];
   worldTotals: SummaryModel[] = [];
 
-  constructor(private totalsByStateService: TotalsByStateService, private covid19ApiService: Covid19ApiService) { }
+  constructor(private totalsByStateService: TotalsByStateService,
+    private covid19ApiService: Covid19ApiService,
+    private appState: AppStateService) { }
 
   ngOnInit() {
     this.totalsByStateService.getStateTotals('US', 'confirmed').subscribe(data => {
@@ -38,7 +41,11 @@ export class TotalConfirmedComponent implements OnInit {
     });
   }
 
-  updateSelectedTab(tab: string){
+  updateSelectedTab(tab: string) {
     this.selectedTab = tab;
+  }
+
+  zoomToState(state: string): void {
+    this.appState.updateLocation(state);
   }
 }
