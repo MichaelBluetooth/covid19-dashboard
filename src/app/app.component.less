@@ -5,3 +5,95 @@ nav {
 .bottom-spacing {
   margin-bottom: 15px;
 }
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+@gutter-size: 8px;
+
+.gutter {
+  margin: @gutter-size;
+}
+
+// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+.total-confirmed-container {
+  order: 1;
+  width: 100%;
+}
+
+.map-container {
+  order: 2;
+  width: 100%;
+}
+
+.chart-container {
+  order: 3;
+  width: 100%;
+  height: 750px;
+}
+
+.totals-container {
+  margin-top: @gutter-size;
+  width: 100%;
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .total-confirmed-container {
+    order: 1;
+    width: calc(30% - @gutter-size *2);
+  }
+
+  .map-container {
+    order: 2;
+    width: calc(70% - @gutter-size *2);
+  }
+
+  .chart-container {
+    order: 4;
+    width: calc(100% - @gutter-size  * 2);
+  }
+
+  .totals-container {
+    order: 3;
+    margin-top: @gutter-size;
+    width: calc(50% - @gutter-size / 2);
+  }
+
+  .totals-container:first-of-type{
+    margin-right: @gutter-size;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .total-confirmed-container {
+    order: 1;
+    width: calc(20% - @gutter-size *2);
+  }
+
+  .map-container {
+    order: 2;
+    width: calc(50% - @gutter-size *2);
+  }
+
+  .chart-container {
+    order: 3;
+    width: calc(30% - @gutter-size  * 2);
+  }
+
+  .totals-container {
+    margin-top: @gutter-size;
+    width: calc(50% - @gutter-size / 2);
+  }
+}
