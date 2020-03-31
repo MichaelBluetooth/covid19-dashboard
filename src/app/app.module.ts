@@ -12,6 +12,7 @@ import { MapComponent } from './components/map/map.component';
 import { TotalsComponent } from './components/totals/totals.component';
 import { TotalConfirmedComponent } from './components/total-confirmed/total-confirmed.component';
 import { ChartComponent } from './components/chart/chart.component';
+import { CountyDetailsComponent } from './components/county-details/county-details.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ChartComponent } from './components/chart/chart.component';
     TotalsComponent,
     TotalConfirmedComponent,
     ChartComponent,
+    CountyDetailsComponent,
   ],
   imports: [
     BrowserModule,

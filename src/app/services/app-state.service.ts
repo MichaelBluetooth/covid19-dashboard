@@ -25,4 +25,8 @@ export class AppStateService {
       this._currentLocation.next(STATE_COORDINATES[state]);
     }
   }
+
+  updateLocationByCoordinate(lat: number, lng: number): void {
+    this._currentLocation.next({ lat: lat, lng: lng });
+  }
 }

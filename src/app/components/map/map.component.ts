@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { MOCK_DATA } from 'src/app/models/test-data.model';
 import { DeduplicateFilterService } from 'src/app/services/deduplicate-filter.service';
 import { ALL_US_STATES } from 'src/app/data/states';
 import { Covid19ApiService } from 'src/app/services/covid-19-api.service';
 import { AppStateService } from 'src/app/services/app-state.service';
-import { Observable } from 'rxjs';
-import { MapCoordinates } from 'src/app/models/map-coordinates.model';
+import { TotalCount } from 'src/app/models/total-count.model';
 
 // just an interface for type safety.
 interface Marker {
@@ -24,6 +22,8 @@ interface Marker {
 })
 export class MapComponent {
 
+  selectedCounty = null;
+
   data: any[] = [];
   zoom: number = 7;
   currentLocation$ = this.appState.currentLocation$;
@@ -31,11 +31,6 @@ export class MapComponent {
   constructor(private covid19ApiService: Covid19ApiService, private deduplicateService: DeduplicateFilterService, private appState: AppStateService) { }
 
   ngOnInit() {
-    // this.appState.currentLocation$.subscribe(coo => {
-    //   this.lng = coo.lng;
-    //   this.lat = coo.lat;
-    // });
-
     this.covid19ApiService.totalsByCountry('US', 'confirmed').subscribe(raw => {
       this.data = this.deduplicateService.dedupe(raw).filter(dp => this.include(dp.Province)).map(dp => {
         let radius = Math.log(dp.Cases) * 100 * (1 / this.zoom * 120);
@@ -67,7 +62,12 @@ export class MapComponent {
   }
 
   circleClicked(dataPoint: any) {
-    alert(`${dataPoint.data.Province}: ${dataPoint.data.Cases}`);
+    this.appState.updateLocationByCoordinate(dataPoint.data.Lat, dataPoint.data.Lng);
+    this.selectedCounty = dataPoint.data;
+  }
+
+  clearSelected(){
+    this.selectedCounty = null;
   }
 
   mapClicked($event: MouseEvent) {

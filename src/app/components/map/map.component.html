@@ -17,5 +17,7 @@
         </agm-circle>
       </agm-map>
     </div>
+
+    <app-county-details (close)="clearSelected()" class="county-details" *ngIf="selectedCounty" [total]="selectedCounty"></app-county-details>
   </div>
 </div>
