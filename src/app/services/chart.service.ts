@@ -10,7 +10,7 @@ import { ChartData } from '../models/chart-data.model';
 })
 export class ChartService {
 
-  numDays = 30;
+  numDays = 90;
 
   constructor(private covid19ApiService: Covid19ApiService) { }
 

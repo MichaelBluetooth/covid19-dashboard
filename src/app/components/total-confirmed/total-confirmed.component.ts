@@ -30,6 +30,8 @@ export class TotalConfirmedComponent implements OnInit {
     this.totalsByStateService.getStateTotals('US', 'confirmed').subscribe(data => {
       this.stateTotals = data;
       this.statesTotal = this.stateTotals.map(t => t.Cases).reduce((prev, next) => prev + next);
+
+      this.appState.updateLocation(data[0].Province);
     });
 
     this.covid19ApiService.getSummary().subscribe(resp => {
