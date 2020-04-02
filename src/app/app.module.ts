@@ -13,6 +13,7 @@ import { TotalsComponent } from './components/totals/totals.component';
 import { TotalConfirmedComponent } from './components/total-confirmed/total-confirmed.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { CountyDetailsComponent } from './components/county-details/county-details.component';
+import { StateIncreaseComponent } from './components/state-increase/state-increase.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CountyDetailsComponent } from './components/county-details/county-detai
     TotalConfirmedComponent,
     ChartComponent,
     CountyDetailsComponent,
+    StateIncreaseComponent,
   ],
   imports: [
     BrowserModule,
