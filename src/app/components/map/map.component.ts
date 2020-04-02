@@ -46,9 +46,9 @@ export class MapComponent {
   }
 
   update() {
-    this.data.forEach(d => {
-      d.radius =  Math.log(d.Data.Cases) * 100 * ((1 / this.zoom) * 120);
-    });
+    // this.data.forEach(d => {
+    //   d.radius =  Math.log(d.data.Cases) * 100 * ((1 / this.zoom) * 120);
+    // });
   }
 
   include(province: string) {
